@@ -275,6 +275,7 @@ const styles = StyleSheet.create({
     },
     inputKeyword: {
         height: 40, borderRadius: 5, borderWidth: 1, borderColor: '#cacaca',
+        color: '#212121',
         paddingLeft: 8, marginHorizontal: 24, marginTop: 16
     },
     buttonWrapper: {
