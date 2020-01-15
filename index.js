@@ -21,7 +21,7 @@ class Select2 extends Component {
         buttonTextStyle: {},
         buttonStyle: {},
         showSearchBox: true,
-        editable: true
+        disabled: false
     }
     state = {
         show: false,
@@ -135,7 +135,7 @@ class Select2 extends Component {
         let { show, selectedItem, preSelectedItem } = this.state;
         return (
             <TouchableOpacity
-                editable={this.editable}
+                disabled={this.disabled}
                 onPress={this.showModal}
                 activeOpacity={0.7}
                 style={[styles.container, style]}>
@@ -327,7 +327,7 @@ Select2.propTypes = {
     showSearchBox: PropTypes.bool,
     cancelButtonText: PropTypes.string,
     selectButtonText: PropTypes.string,
-    editable: PropTypes.bool
+    disabled: PropTypes.bool
 }
 
 //make this component available to the app
