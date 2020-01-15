@@ -130,12 +130,12 @@ class Select2 extends Component {
         let {
             style, modalStyle, title, onSelect, onRemoveItem, popupTitle, colorTheme,
             isSelectSingle, cancelButtonText, selectButtonText, searchPlaceHolderText,
-            selectedTitleStyle, buttonTextStyle, buttonStyle, showSearchBox
+            selectedTitleStyle, buttonTextStyle, buttonStyle, showSearchBox, disabled
         } = this.props;
         let { show, selectedItem, preSelectedItem } = this.state;
         return (
             <TouchableOpacity
-                disabled={this.disabled}
+                disabled={disabled}
                 onPress={this.showModal}
                 activeOpacity={0.7}
                 style={[styles.container, style]}>
