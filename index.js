@@ -92,9 +92,14 @@ class Select2 extends Component {
                 data[index].checked = false;
             }
         }
-        data.map(item => {
+        // data.map(item => {
+        //     if (item.checked) selectedItem.push(item);
+        // })
+
+        for (const item in data) {
             if (item.checked) selectedItem.push(item);
-        })
+        }
+
         this.setState({ data, selectedItem });
     }
     keyExtractor = (item, idx) => idx.toString();
