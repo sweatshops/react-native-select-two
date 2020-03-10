@@ -121,6 +121,7 @@ class Select2 extends Component {
 
                     let selectedIds = [], selectedObjectItems = [];
 
+                    console.log(selectedItem)
                     // selectedItem.map(item => {
                     //     selectedIds.push(item.id);
                     //     selectedObjectItems.push(item);
