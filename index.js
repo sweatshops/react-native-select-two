@@ -107,6 +107,8 @@ class Select2 extends Component {
                 onPress={async () => {
                     await this.onItemSelected(item, isSelectSingle)
 
+                    console.log(selectedItem);
+
                     let selectedIds = [], selectedObjectItems = [];
                     selectedItem.map(item => {
                         selectedIds.push(item.id);
