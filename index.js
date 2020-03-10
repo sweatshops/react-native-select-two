@@ -105,14 +105,14 @@ class Select2 extends Component {
             <TouchableOpacity
                 key={idx}
                 onPress={() => {
-                    await this.onItemSelected(item, isSelectSingle)
+                    this.onItemSelected(item, isSelectSingle)
 
                     let selectedIds = [], selectedObjectItems = [];
                     selectedItem.map(item => {
                         selectedIds.push(item.id);
                         selectedObjectItems.push(item);
                     })
-                    onSelect && onSelect(selectedIds, selectedObjectItems);
+                    onSelect && await onSelect(selectedIds, selectedObjectItems);
                     this.setState({ show: false, keyword: '', preSelectedItem: selectedItem });
                 }}
                 activeOpacity={0.7}
