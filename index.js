@@ -81,7 +81,7 @@ class Select2 extends Component {
         this.setState({ data, show: false, keyword: '', selectedItem: preSelectedItem });
     }
 
-    onItemSelected = (item, isSelectSingle) => {
+    onItemSelected = async (item, isSelectSingle) => {
         let selectedItem = [];
         let { data } = this.state;
         for (let index in data) {
@@ -114,7 +114,7 @@ class Select2 extends Component {
             <TouchableOpacity
                 key={idx}
                 onPress={() => {
-                    this.onItemSelected(item, isSelectSingle)
+                    await this.onItemSelected(item, isSelectSingle)
 
                     let selectedIds = [], selectedObjectItems = [];
                     selectedItem.map(item => {
