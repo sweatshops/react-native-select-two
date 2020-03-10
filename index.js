@@ -128,6 +128,7 @@ class Select2 extends Component {
                     for (const item in selectedItem) {
                         if (selectedItem.hasOwnProperty(item)) {
                             const element = selectedItem[item];
+                            console.log(element)
                             selectedIds.push(element.id);
                             selectedObjectItems.push(element);
                         }
