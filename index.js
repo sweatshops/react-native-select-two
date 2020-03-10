@@ -101,6 +101,8 @@ class Select2 extends Component {
                 if (item.checked) selectedItem.push(item);
             }
         }
+
+        console.log(selectedItem)
         
         this.setState({ data, selectedItem });
     }
