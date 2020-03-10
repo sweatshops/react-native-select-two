@@ -120,10 +120,18 @@ class Select2 extends Component {
                     this.onItemSelected(item, isSelectSingle)
 
                     let selectedIds = [], selectedObjectItems = [];
-                    selectedItem.map(item => {
-                        selectedIds.push(item.id);
-                        selectedObjectItems.push(item);
-                    })
+
+                    // selectedItem.map(item => {
+                    //     selectedIds.push(item.id);
+                    //     selectedObjectItems.push(item);
+                    // })
+                    for (const item in selectedItem) {
+                        if (selectedItem.hasOwnProperty(item)) {
+                            const element = selectedItem[item];
+                            selectedIds.push(element.id);
+                            selectedObjectItems.push(element);
+                        }
+                    }
                     selectedIds && onSelect && onSelect(selectedIds, selectedObjectItems);
                     this.setState({ show: false, keyword: '', preSelectedItem: selectedItem });
                 }}
