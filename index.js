@@ -100,12 +100,9 @@ class Select2 extends Component {
             if (data.hasOwnProperty(item)) {
                 if (data[item].checked) {
                     selectedItem = [...selectedItem, data[item]];
-                    console.log(data[item]);
                 }
             }
         }
-
-        console.log(selectedItem)
 
         return selectedItem;
 
@@ -122,15 +119,9 @@ class Select2 extends Component {
 
                     let selectedIds = [], selectedObjectItems = [];
 
-                    console.log(selectedItem)
-                    // selectedItem.map(item => {
-                    //     selectedIds.push(item.id);
-                    //     selectedObjectItems.push(item);
-                    // })
                     for (const item in selectedItem) {
                         if (selectedItem.hasOwnProperty(item)) {
                             const element = selectedItem[item];
-                            console.log(element)
                             selectedIds.push(element.id);
                             selectedObjectItems.push(element);
                         }
