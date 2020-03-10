@@ -83,7 +83,9 @@ class Select2 extends Component {
 
     onItemSelected = async (item, isSelectSingle) => {
         let selectedItem = [];
-        let { data } = this.state;
+        let { data, selectedItem } = this.state;
+        let { onSelect } = this.props;
+
         for (let index in data) {
             if (data[index].id === item.id) {
                 data[index] = item;
@@ -96,26 +98,23 @@ class Select2 extends Component {
             if (item.checked) selectedItem.push(item);
         })
         this.setState({ data, selectedItem });
+
+        let selectedIds = [], selectedObjectItems = [];
+        selectedItem.map(item => {
+            selectedIds.push(item.id);
+            selectedObjectItems.push(item);
+        })
+        onSelect && onSelect(selectedIds, selectedObjectItems);
+        this.setState({ show: false, keyword: '', preSelectedItem: selectedItem });
     }
     keyExtractor = (item, idx) => idx.toString();
     renderItem = ({ item, idx }) => {
         let { colorTheme, isSelectSingle, onSelect } = this.props;
-        let { selectedItem } = this.state;
         return (
             <TouchableOpacity
                 key={idx}
                 onPress={async () => {
                     await this.onItemSelected(item, isSelectSingle)
-
-                    console.log(selectedItem);
-
-                    let selectedIds = [], selectedObjectItems = [];
-                    selectedItem.map(item => {
-                        selectedIds.push(item.id);
-                        selectedObjectItems.push(item);
-                    })
-                    onSelect && onSelect(selectedIds, selectedObjectItems);
-                    this.setState({ show: false, keyword: '', preSelectedItem: selectedItem });
                 }}
                 activeOpacity={0.7}
                 style={styles.itemWrapper}>
