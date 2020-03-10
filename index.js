@@ -87,6 +87,7 @@ class Select2 extends Component {
         for (let index in data) {
             if (data[index].id === item.id) {
                 data[index] = item;
+                data[index].checked = true;
             } else if (isSelectSingle) {
                 data[index].checked = false;
             }
