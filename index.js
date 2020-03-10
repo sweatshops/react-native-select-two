@@ -117,7 +117,7 @@ class Select2 extends Component {
         return (
             <TouchableOpacity
                 key={idx}
-                onPress={() => {
+                onPress={async () => {
                     let selectedItem = await this.onItemSelected(item, isSelectSingle)
 
                     let selectedIds = [], selectedObjectItems = [];
