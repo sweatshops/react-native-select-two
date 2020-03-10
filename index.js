@@ -81,7 +81,7 @@ class Select2 extends Component {
         this.setState({ data, show: false, keyword: '', selectedItem: preSelectedItem });
     }
 
-    onItemSelected = (item, isSelectSingle) => {
+    onItemSelected = async (item, isSelectSingle) => {
         let selectedItem = [];
         let { data } = this.state;
         for (let index in data) {
@@ -104,15 +104,15 @@ class Select2 extends Component {
         return (
             <TouchableOpacity
                 key={idx}
-                onPress={() => {
-                    this.onItemSelected(item, isSelectSingle)
+                onPress={async () => {
+                    await this.onItemSelected(item, isSelectSingle)
 
                     let selectedIds = [], selectedObjectItems = [];
                     selectedItem.map(item => {
                         selectedIds.push(item.id);
                         selectedObjectItems.push(item);
                     })
-                    onSelect && await onSelect(selectedIds, selectedObjectItems);
+                    onSelect && onSelect(selectedIds, selectedObjectItems);
                     this.setState({ show: false, keyword: '', preSelectedItem: selectedItem });
                 }}
                 activeOpacity={0.7}
