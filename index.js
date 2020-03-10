@@ -84,7 +84,6 @@ class Select2 extends Component {
     onItemSelected = (item, isSelectSingle) => {
         let selectedItem = [];
         let { data } = this.state;
-        item.checked = !item.checked;
         for (let index in data) {
             if (data[index].id === item.id) {
                 data[index] = item;
