@@ -81,7 +81,7 @@ class Select2 extends Component {
         this.setState({ data, show: false, keyword: '', selectedItem: preSelectedItem });
     }
 
-    onItemSelected = (item, isSelectSingle) => {
+    onItemSelected = async (item, isSelectSingle) => {
         let selectedItem = [];
         let { data } = this.state;
         for (let index in data) {
@@ -99,7 +99,7 @@ class Select2 extends Component {
         for (const item in data) {
             if (data.hasOwnProperty(item)) {
                 if (data[item].checked) {
-                    selectedItem = [...selectedItem , data[item]];
+                    selectedItem = [...selectedItem, data[item]];
                     console.log(data[item]);
                 }
             }
@@ -107,17 +107,18 @@ class Select2 extends Component {
 
         console.log(selectedItem)
 
-        this.setState({ data, selectedItem });
+        return selectedItem;
+
+        // this.setState({ data, selectedItem });
     }
     keyExtractor = (item, idx) => idx.toString();
     renderItem = ({ item, idx }) => {
         let { colorTheme, isSelectSingle, onSelect } = this.props;
-        let { selectedItem } = this.state;
         return (
             <TouchableOpacity
                 key={idx}
                 onPress={() => {
-                    this.onItemSelected(item, isSelectSingle)
+                    let selectedItem = await this.onItemSelected(item, isSelectSingle)
 
                     let selectedIds = [], selectedObjectItems = [];
 
