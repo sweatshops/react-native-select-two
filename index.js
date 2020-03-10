@@ -98,8 +98,7 @@ class Select2 extends Component {
 
         for (const item in data) {
             if (data.hasOwnProperty(item)) {
-                console.log(data)
-                if (item.checked) selectedItem.push(item);
+                if (data[item].checked) selectedItem.push(data[item]);
             }
         }
 
