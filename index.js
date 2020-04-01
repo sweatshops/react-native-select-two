@@ -114,32 +114,38 @@ class Select2 extends Component {
     renderItem = ({ item, idx }) => {
         let { colorTheme, isSelectSingle, onSelect } = this.props;
         return (
-            <TouchableOpacity
-                key={idx}
-                onPress={async () => {
-                    let selectedItem = await this.onItemSelected(item, isSelectSingle)
+            <Translation>
+                {
+                    t => (
+                        <TouchableOpacity
+                            key={idx}
+                            onPress={async () => {
+                                let selectedItem = await this.onItemSelected(item, isSelectSingle)
 
-                    let selectedIds = [], selectedObjectItems = [];
+                                let selectedIds = [], selectedObjectItems = [];
 
-                    for (const item in selectedItem) {
-                        if (selectedItem.hasOwnProperty(item)) {
-                            const element = selectedItem[item];
-                            selectedIds.push(element.id);
-                            selectedObjectItems.push(element);
-                        }
-                    }
-                    selectedIds && onSelect && onSelect(selectedIds, selectedObjectItems);
-                    this.setState({ show: false, keyword: '', preSelectedItem: selectedItem });
-                }}
-                activeOpacity={0.7}
-                style={styles.itemWrapper}>
-                <Text style={[styles.itemText, this.defaultFont]}>
-                    {item.name}
-                </Text>
-                <Icon style={styles.itemIcon}
-                    name={item.checked ? 'check-circle-outline' : 'radiobox-blank'}
-                    color={item.checked ? colorTheme : '#777777'} size={20} />
-            </TouchableOpacity>
+                                for (const item in selectedItem) {
+                                    if (selectedItem.hasOwnProperty(item)) {
+                                        const element = selectedItem[item];
+                                        selectedIds.push(element.id);
+                                        selectedObjectItems.push(element);
+                                    }
+                                }
+                                selectedIds && onSelect && onSelect(selectedIds, selectedObjectItems);
+                                this.setState({ show: false, keyword: '', preSelectedItem: selectedItem });
+                            }}
+                            activeOpacity={0.7}
+                            style={styles.itemWrapper}>
+                            <Text style={[styles.itemText, this.defaultFont]}>
+                                {t(`${translationKey}${item.name}`)}
+                            </Text>
+                            <Icon style={styles.itemIcon}
+                                name={item.checked ? 'check-circle-outline' : 'radiobox-blank'}
+                                color={item.checked ? colorTheme : '#777777'} size={20} />
+                        </TouchableOpacity>
+                    )
+                }
+            </Translation>
         );
     }
     renderEmpty = () => {
@@ -276,7 +282,7 @@ class Select2 extends Component {
                                                                     this.setState({ data, preSelectedItem });
                                                                     onRemoveItem && onRemoveItem(selectedIds, selectedObjectItems);
                                                                 }}
-                                                                tagName={t(`${translationKey}${tag.name}`)} />
+                                                                tagName={tag.name} />
                                                         );
                                                     })
                                                 }
