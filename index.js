@@ -112,7 +112,7 @@ class Select2 extends Component {
     }
     keyExtractor = (item, idx) => idx.toString();
     renderItem = ({ item, idx }) => {
-        let { colorTheme, isSelectSingle, onSelect } = this.props;
+        let { colorTheme, isSelectSingle, onSelect, translationKey } = this.props;
         return (
             <Translation>
                 {
