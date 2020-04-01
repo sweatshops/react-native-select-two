@@ -40,5 +40,8 @@
     "react-native": "~0.57.7",
     "react-native-vector-icons": "^4.2.0",
     "react-native-modal": "^11.1.0"
+  },
+  "dependencies": {
+    "react-i18next": "^11.3.4"
   }
 }

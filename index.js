@@ -7,6 +7,7 @@ import Button from './lib/Button';
 import TagItem from './lib/TagItem';
 import utilities from './lib/utilities';
 import PropTypes from 'prop-types';
+import { Translation } from 'react-i18next';
 
 const { height } = Dimensions.get('window');
 const INIT_HEIGHT = height * 0.6;
@@ -21,7 +22,8 @@ class Select2 extends Component {
         buttonTextStyle: {},
         buttonStyle: {},
         showSearchBox: true,
-        disabled: false
+        disabled: false,
+        translationKey: ''
     }
     state = {
         show: false,
@@ -159,127 +161,133 @@ class Select2 extends Component {
         } = this.props;
         let { show, selectedItem, preSelectedItem } = this.state;
         return (
-            <TouchableOpacity
-                disabled={disabled}
-                onPress={this.showModal}
-                activeOpacity={0.7}
-                style={[styles.container, style]}>
-                <Modal
-                    onBackdropPress={this.closeModal}
-                    style={{
-                        justifyContent: 'flex-end',
-                        margin: 0
-                    }}
-                    useNativeDriver={true}
-                    animationInTiming={300}
-                    animationOutTiming={300}
-                    hideModalContentWhileAnimating
-                    isVisible={show}>
-                    <Animated.View style={[styles.modalContainer, modalStyle, { height: this.animatedHeight }]}>
-                        <View>
-                            <Text style={[styles.title, this.defaultFont, { color: colorTheme }]}>
-                                {popupTitle || title}
-                            </Text>
-                        </View>
-                        <View style={styles.line} />
-                        {
-                            showSearchBox
-                                ? <TextInput
-                                    underlineColorAndroid='transparent'
-                                    returnKeyType='done'
-                                    style={[styles.inputKeyword, this.defaultFont]}
-                                    placeholder={searchPlaceHolderText}
-                                    selectionColor={colorTheme}
-                                    onChangeText={keyword => this.setState({ keyword })}
-                                    onFocus={() => {
-                                        Animated.spring(this.animatedHeight, {
-                                            toValue: INIT_HEIGHT + (Platform.OS === 'ios' ? height * 0.2 : 0),
-                                            friction: 7
-                                        }).start();
-                                    }}
-                                    onBlur={() => {
-                                        Animated.spring(this.animatedHeight, {
-                                            toValue: INIT_HEIGHT,
-                                            friction: 7
-                                        }).start();
-                                    }}
-                                />
-                                : null
-                        }
-                        <FlatList
-                            style={styles.listOption}
-                            data={this.dataRender || []}
-                            keyExtractor={this.keyExtractor}
-                            renderItem={this.renderItem}
-                            ListEmptyComponent={this.renderEmpty}
-                        />
-
-                        <View style={styles.buttonWrapper}>
-                            <Button
-                                defaultFont={this.defaultFont}
-                                onPress={() => {
-                                    this.cancelSelection();
-                                }}
-                                title={cancelButtonText}
-                                textColor={colorTheme}
-                                backgroundColor='#fff'
-                                textStyle={buttonTextStyle}
-                                style={[styles.button, buttonStyle, { marginRight: 5, marginLeft: 10, borderWidth: 1, borderColor: colorTheme }]} />
-                            <Button
-                                defaultFont={this.defaultFont}
-                                onPress={() => {
-                                    let selectedIds = [], selectedObjectItems = [];
-                                    selectedItem.map(item => {
-                                        selectedIds.push(item.id);
-                                        selectedObjectItems.push(item);
-                                    })
-                                    onSelect && onSelect(selectedIds, selectedObjectItems);
-                                    this.setState({ show: false, keyword: '', preSelectedItem: selectedItem });
-                                }}
-                                title={selectButtonText}
-                                backgroundColor={colorTheme}
-                                textStyle={buttonTextStyle}
-                                style={[styles.button, buttonStyle, { marginLeft: 5, marginRight: 10 }]} />
-                        </View>
-                    </Animated.View>
-                </Modal>
+            <Translation>
                 {
-                    preSelectedItem.length > 0
-                        ? (
-                            isSelectSingle
-                                ? <Text style={[styles.selectedTitlte, this.defaultFont, selectedTitleStyle, { color: '#333' }]}>{preSelectedItem[0].name}</Text>
-                                : <View style={styles.tagWrapper}>
+                    t => (
+                        <TouchableOpacity
+                            disabled={disabled}
+                            onPress={this.showModal}
+                            activeOpacity={0.7}
+                            style={[styles.container, style]}>
+                            <Modal
+                                onBackdropPress={this.closeModal}
+                                style={{
+                                    justifyContent: 'flex-end',
+                                    margin: 0
+                                }}
+                                useNativeDriver={true}
+                                animationInTiming={300}
+                                animationOutTiming={300}
+                                hideModalContentWhileAnimating
+                                isVisible={show}>
+                                <Animated.View style={[styles.modalContainer, modalStyle, { height: this.animatedHeight }]}>
+                                    <View>
+                                        <Text style={[styles.title, this.defaultFont, { color: colorTheme }]}>
+                                            {popupTitle || title}
+                                        </Text>
+                                    </View>
+                                    <View style={styles.line} />
                                     {
-                                        preSelectedItem.map((tag, index) => {
-                                            return (
-                                                <TagItem
-                                                    key={index}
-                                                    onRemoveTag={() => {
-                                                        let preSelectedItem = [];
-                                                        let selectedIds = [], selectedObjectItems = [];
-                                                        let { data } = this.state;
-                                                        data.map(item => {
-                                                            if (item.id === tag.id) {
-                                                                item.checked = false;
-                                                            }
-                                                            if (item.checked) {
-                                                                preSelectedItem.push(item);
-                                                                selectedIds.push(item.id);
-                                                                selectedObjectItems.push(item);
-                                                            };
-                                                        })
-                                                        this.setState({ data, preSelectedItem });
-                                                        onRemoveItem && onRemoveItem(selectedIds, selectedObjectItems);
-                                                    }}
-                                                    tagName={tag.name} />
-                                            );
-                                        })
+                                        showSearchBox
+                                            ? <TextInput
+                                                underlineColorAndroid='transparent'
+                                                returnKeyType='done'
+                                                style={[styles.inputKeyword, this.defaultFont]}
+                                                placeholder={searchPlaceHolderText}
+                                                selectionColor={colorTheme}
+                                                onChangeText={keyword => this.setState({ keyword })}
+                                                onFocus={() => {
+                                                    Animated.spring(this.animatedHeight, {
+                                                        toValue: INIT_HEIGHT + (Platform.OS === 'ios' ? height * 0.2 : 0),
+                                                        friction: 7
+                                                    }).start();
+                                                }}
+                                                onBlur={() => {
+                                                    Animated.spring(this.animatedHeight, {
+                                                        toValue: INIT_HEIGHT,
+                                                        friction: 7
+                                                    }).start();
+                                                }}
+                                            />
+                                            : null
                                     }
-                                </View>
-                        )
-                        : <Text style={[styles.selectedTitlte, this.defaultFont, selectedTitleStyle]}>{title}</Text>
+                                    <FlatList
+                                        style={styles.listOption}
+                                        data={this.dataRender || []}
+                                        keyExtractor={this.keyExtractor}
+                                        renderItem={this.renderItem}
+                                        ListEmptyComponent={this.renderEmpty}
+                                    />
+
+                                    <View style={styles.buttonWrapper}>
+                                        <Button
+                                            defaultFont={this.defaultFont}
+                                            onPress={() => {
+                                                this.cancelSelection();
+                                            }}
+                                            title={cancelButtonText}
+                                            textColor={colorTheme}
+                                            backgroundColor='#fff'
+                                            textStyle={buttonTextStyle}
+                                            style={[styles.button, buttonStyle, { marginRight: 5, marginLeft: 10, borderWidth: 1, borderColor: colorTheme }]} />
+                                        <Button
+                                            defaultFont={this.defaultFont}
+                                            onPress={() => {
+                                                let selectedIds = [], selectedObjectItems = [];
+                                                selectedItem.map(item => {
+                                                    selectedIds.push(item.id);
+                                                    selectedObjectItems.push(item);
+                                                })
+                                                onSelect && onSelect(selectedIds, selectedObjectItems);
+                                                this.setState({ show: false, keyword: '', preSelectedItem: selectedItem });
+                                            }}
+                                            title={selectButtonText}
+                                            backgroundColor={colorTheme}
+                                            textStyle={buttonTextStyle}
+                                            style={[styles.button, buttonStyle, { marginLeft: 5, marginRight: 10 }]} />
+                                    </View>
+                                </Animated.View>
+                            </Modal>
+                            {
+                                preSelectedItem.length > 0
+                                    ? (
+                                        isSelectSingle
+                                            ? <Text style={[styles.selectedTitlte, this.defaultFont, selectedTitleStyle, { color: '#333' }]}>{preSelectedItem[0].name}</Text>
+                                            : <View style={styles.tagWrapper}>
+                                                {
+                                                    preSelectedItem.map((tag, index) => {
+                                                        return (
+                                                            <TagItem
+                                                                key={index}
+                                                                onRemoveTag={() => {
+                                                                    let preSelectedItem = [];
+                                                                    let selectedIds = [], selectedObjectItems = [];
+                                                                    let { data } = this.state;
+                                                                    data.map(item => {
+                                                                        if (item.id === tag.id) {
+                                                                            item.checked = false;
+                                                                        }
+                                                                        if (item.checked) {
+                                                                            preSelectedItem.push(item);
+                                                                            selectedIds.push(item.id);
+                                                                            selectedObjectItems.push(item);
+                                                                        };
+                                                                    })
+                                                                    this.setState({ data, preSelectedItem });
+                                                                    onRemoveItem && onRemoveItem(selectedIds, selectedObjectItems);
+                                                                }}
+                                                                tagName={t(`${translationKey}${tag.name}`)} />
+                                                        );
+                                                    })
+                                                }
+                                            </View>
+                                    )
+                                    : <Text style={[styles.selectedTitlte, this.defaultFont, selectedTitleStyle]}>{title}</Text>
+                            }
+                        </TouchableOpacity>
+                    )
                 }
-            </TouchableOpacity>
+            </Translation>
         );
     }
 }
@@ -352,7 +360,8 @@ Select2.propTypes = {
     showSearchBox: PropTypes.bool,
     cancelButtonText: PropTypes.string,
     selectButtonText: PropTypes.string,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    translationKey: PropTypes.string
 }
 
 //make this component available to the app
