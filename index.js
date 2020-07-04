@@ -153,12 +153,12 @@ class Select2 extends Component {
                                     }}
                                 />
                             }
-                            <View style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+                            <View style={{ flex: 1 }}>
                                 <Text style={[styles.itemText, this.defaultFont]}>
                                     {t(`${translationKey}${item.name}`)}
                                 </Text>
                                 {
-                                    item.disabled &&
+                                    item.reason !== '' &&
                                     <Text style={[styles.reasonText, this.defaultFont]}>
                                         {t(item.reason)}
                                     </Text>
