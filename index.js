@@ -153,7 +153,7 @@ class Select2 extends Component {
                                     }}
                                 />
                             }
-                            <View style={{ flex: 1, alignItems: 'center' }}>
+                            <View style={{ flex: 1, justifyContent: 'center' }}>
                                 <Text style={[styles.itemText, this.defaultFont]}>
                                     {t(`${translationKey}${item.name}`)}
                                 </Text>
