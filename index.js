@@ -23,8 +23,7 @@ class Select2 extends Component {
         buttonStyle: {},
         showSearchBox: true,
         disabled: false,
-        translationKey: '',
-        imageUrl: '',
+        translationKey: ''
     }
     state = {
         show: false,
@@ -113,7 +112,7 @@ class Select2 extends Component {
     }
     keyExtractor = (item, idx) => idx.toString();
     renderItem = ({ item, idx }) => {
-        let { colorTheme, isSelectSingle, onSelect, translationKey, imageUrl } = this.props;
+        let { colorTheme, isSelectSingle, onSelect, translationKey } = this.props;
         return (
             <Translation>
                 {
@@ -138,7 +137,7 @@ class Select2 extends Component {
                             activeOpacity={0.7}
                             style={styles.itemWrapper}>
                             {
-                                imageUrl !== '' &&
+                                item.imageUrl &&
                                 <Image
                                     style={{
                                         width: 45,
@@ -147,10 +146,11 @@ class Select2 extends Component {
                                         paddingRight: 15,
                                     }}
                                     source={{
-                                        uri: imageUrl,
+                                        uri: item.imageUrl,
                                     }}
                                 />
                             }
+
                             <Text style={[styles.itemText, this.defaultFont]}>
                                 {t(`${translationKey}${item.name}`)}
                             </Text>
@@ -383,8 +383,7 @@ Select2.propTypes = {
     cancelButtonText: PropTypes.string,
     selectButtonText: PropTypes.string,
     disabled: PropTypes.bool,
-    translationKey: PropTypes.string,
-    imageUrl: PropTypes.string
+    translationKey: PropTypes.string
 }
 
 //make this component available to the app
