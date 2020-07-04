@@ -110,6 +110,7 @@ class Select2 extends Component {
 
         // this.setState({ data, selectedItem });
     }
+
     keyExtractor = (item, idx) => idx.toString();
     renderItem = ({ item, idx }) => {
         let { colorTheme, isSelectSingle, onSelect, translationKey } = this.props;
@@ -118,6 +119,7 @@ class Select2 extends Component {
                 {
                     t => (
                         <TouchableOpacity
+                            disabled={item.disabled}
                             key={idx}
                             onPress={async () => {
                                 let selectedItem = await this.onItemSelected(item, isSelectSingle)
