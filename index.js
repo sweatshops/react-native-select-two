@@ -160,7 +160,7 @@ class Select2 extends Component {
                                 {
                                     item.disabled &&
                                     <Text style={[styles.reasonText, this.defaultFont]}>
-                                        {item.reason}
+                                        {t(item.reason)}
                                     </Text>
                                 }
                             </View>
