@@ -136,6 +136,16 @@ class Select2 extends Component {
                             }}
                             activeOpacity={0.7}
                             style={styles.itemWrapper}>
+                            <Image
+                                style={{
+                                    width: 50,
+                                    height: 50,
+                                    borderRadius: 25
+                                }}
+                                source={{
+                                    uri: 'https://reactnative.dev/img/tiny_logo.png',
+                                }}
+                            />
                             <Text style={[styles.itemText, this.defaultFont]}>
                                 {t(`${translationKey}${item.name}`)}
                             </Text>
