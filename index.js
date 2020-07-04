@@ -154,7 +154,7 @@ class Select2 extends Component {
                                 />
                             }
                             <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
-                                <Text style={[styles.itemText, this.defaultFont]}>
+                                <Text style={[styles.itemText, this.defaultFont, { textDecorationLine: item.disabled ? 'line-through' : 'none' }]}>
                                     {t(`${translationKey}${item.name}`)}
                                 </Text>
                                 {
