@@ -153,7 +153,7 @@ class Select2 extends Component {
                                     }}
                                 />
                             }
-                            <View>
+                            <View style={{ flex: 1 }}>
                                 <Text style={[styles.itemText, this.defaultFont]}>
                                     {t(`${translationKey}${item.name}`)}
                                 </Text>
