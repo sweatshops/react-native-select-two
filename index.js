@@ -23,7 +23,8 @@ class Select2 extends Component {
         buttonStyle: {},
         showSearchBox: true,
         disabled: false,
-        translationKey: ''
+        translationKey: '',
+        imageUrl: '',
     }
     state = {
         show: false,
@@ -112,7 +113,7 @@ class Select2 extends Component {
     }
     keyExtractor = (item, idx) => idx.toString();
     renderItem = ({ item, idx }) => {
-        let { colorTheme, isSelectSingle, onSelect, translationKey } = this.props;
+        let { colorTheme, isSelectSingle, onSelect, translationKey, imageUrl } = this.props;
         return (
             <Translation>
                 {
@@ -136,16 +137,20 @@ class Select2 extends Component {
                             }}
                             activeOpacity={0.7}
                             style={styles.itemWrapper}>
-                            <Image
-                                style={{
-                                    width: 50,
-                                    height: 50,
-                                    borderRadius: 25
-                                }}
-                                source={{
-                                    uri: 'https://reactnative.dev/img/tiny_logo.png',
-                                }}
-                            />
+                            {
+                                imageUrl !== '' &&
+                                <Image
+                                    style={{
+                                        width: 45,
+                                        height: 45,
+                                        borderRadius: 5,
+                                        paddingRight: 15,
+                                    }}
+                                    source={{
+                                        uri: imageUrl,
+                                    }}
+                                />
+                            }
                             <Text style={[styles.itemText, this.defaultFont]}>
                                 {t(`${translationKey}${item.name}`)}
                             </Text>
@@ -378,7 +383,8 @@ Select2.propTypes = {
     cancelButtonText: PropTypes.string,
     selectButtonText: PropTypes.string,
     disabled: PropTypes.bool,
-    translationKey: PropTypes.string
+    translationKey: PropTypes.string,
+    imageUrl: PropTypes.string
 }
 
 //make this component available to the app
