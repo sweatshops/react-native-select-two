@@ -140,10 +140,11 @@ class Select2 extends Component {
                                 item.imageUrl &&
                                 <Image
                                     style={{
-                                        width: 45,
-                                        height: 45,
+                                        width: 50,
+                                        height: 50,
                                         borderRadius: 5,
-                                        paddingRight: 15,
+                                        marginRight: 15,
+                                        resizeMode: 'contain'
                                     }}
                                     source={{
                                         uri: item.imageUrl,
