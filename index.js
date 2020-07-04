@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
-import { Text, StyleSheet, TouchableOpacity, View, FlatList, TextInput, Dimensions, Animated, Platform } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity, View, FlatList, TextInput, Dimensions, Animated, Platform, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Modal from 'react-native-modal';
 import Button from './lib/Button';
