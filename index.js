@@ -153,10 +153,17 @@ class Select2 extends Component {
                                     }}
                                 />
                             }
-
-                            <Text style={[styles.itemText, this.defaultFont]}>
-                                {t(`${translationKey}${item.name}`)}
-                            </Text>
+                            <View>
+                                <Text style={[styles.itemText, this.defaultFont]}>
+                                    {t(`${translationKey}${item.name}`)}
+                                </Text>
+                                {
+                                    item.reason &&
+                                    <Text style={[styles.reasonText, this.defaultFont]}>
+                                        {item.reason}
+                                    </Text>
+                                }
+                            </View>
                             <Icon style={styles.itemIcon}
                                 name={item.checked ? 'check-circle-outline' : 'radiobox-blank'}
                                 color={item.checked ? colorTheme : '#777777'} size={20} />
@@ -360,6 +367,9 @@ const styles = StyleSheet.create({
     },
     itemText: {
         fontSize: 16, color: '#333', flex: 1
+    },
+    reasonText: {
+        fontSize: 12, color: '#9E9E9E', flex: 1
     },
     itemIcon: {
         width: 30, textAlign: 'right'
