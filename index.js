@@ -58,6 +58,7 @@ class Select2 extends Component {
         let listMappingKeyword = [];
         data.map(item => {
             if (utilities.changeAlias(item.name).includes(utilities.changeAlias(keyword))) {
+                console.log(item)
                 listMappingKeyword.push(item);
             }
         });
