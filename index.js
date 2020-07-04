@@ -58,7 +58,6 @@ class Select2 extends Component {
         let listMappingKeyword = [];
         data.map(item => {
             if (utilities.changeAlias(item.name).includes(utilities.changeAlias(keyword))) {
-                console.log(item)
                 listMappingKeyword.push(item);
             }
         });
@@ -114,6 +113,7 @@ class Select2 extends Component {
     keyExtractor = (item, idx) => idx.toString();
     renderItem = ({ item, idx }) => {
         let { colorTheme, isSelectSingle, onSelect, translationKey } = this.props;
+        console.log(item)
         return (
             <Translation>
                 {
