@@ -158,7 +158,7 @@ class Select2 extends Component {
                                     {t(`${translationKey}${item.name}`)}
                                 </Text>
                                 {
-                                    item.reason &&
+                                    item.disabled &&
                                     <Text style={[styles.reasonText, this.defaultFont]}>
                                         {item.reason}
                                     </Text>
