@@ -284,7 +284,7 @@ class Select2 extends Component {
                                 preSelectedItem.length > 0
                                     ? (
                                         isSelectSingle
-                                            ? <Text style={[styles.selectedTitlte, this.defaultFont, selectedTitleStyle, { color: '#333' }]}>{t(`${translationKey}${preSelectedItem[0].name}`)}</Text>
+                                            ? <Text style={[{ color: '#333' }, styles.selectedTitlte, this.defaultFont, selectedTitleStyle]}>{t(`${translationKey}${preSelectedItem[0].name}`)}</Text>
                                             : <View style={styles.tagWrapper}>
                                                 {
                                                     preSelectedItem.map((tag, index) => {
